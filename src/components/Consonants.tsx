@@ -1,6 +1,7 @@
 import React, {useState, KeyboardEvent} from 'react'
 import items from "./ConsonantsList";
 import styled from 'styled-components';
+import SoundPlayer from "./SoundPlayer";
 
 const Letter = styled.div`
   text-align: center;
@@ -24,7 +25,11 @@ const StyledConsonants = styled.div`
   padding: 70px;
 `
 
-function Consonants() {
+interface props {
+    sound: boolean
+}
+
+function Consonants({sound}: props) {
     const [count, setCount] = useState(0)
     const [result, setResult] = useState<null | boolean>(null)
     const [input, setInput] = useState('')
@@ -66,7 +71,11 @@ function Consonants() {
                     {
                         result !== null && <Toast $result={result}> {result ? 'Correct' : 'Wrong'}</Toast>
                     }
-                    <Letter> {items[count].latin}</Letter>
+                    {sound ?
+                        <SoundPlayer source={`./sounds/${items[count].thai}.mp3`}/>
+                        :
+                        <Letter> {items[count].latin}</Letter>
+                    }
                     <input type="text" onKeyDown={(event) => handleKeyDown(event)} placeholder={'answer here'}
                            value={input} onChange={(event) => setInput(event.target.value)}/>
                 </>
