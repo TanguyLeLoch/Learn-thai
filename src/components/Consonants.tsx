@@ -34,8 +34,24 @@ const Title = styled.h1`
 `
 
 const StyledInput = styled.input`
-    width: 80%;
+  width: 80%;
+  margin: 0;
 `
+
+const Answer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+`
+const ValidateButton = styled.button`
+  font-size: 5vw;
+  margin: 10px;
+  @media (min-width: 1000px) {
+    display: none;
+  }
+`
+
 interface props {
     sound: boolean
 }
@@ -64,16 +80,18 @@ function Consonants({sound}: props) {
 
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            if (event.currentTarget.value === items[count].thai) {
-                handleSuccess();
-            } else {
-                handleFailure();
-            }
+            handleValidate(input)
         } else {
             setInput(event.currentTarget.value)
         }
     }
-
+    const handleValidate = (input: string) => {
+        if (input === items[count].thai) {
+            handleSuccess();
+        } else {
+            handleFailure();
+        }
+    }
     return (
         <StyledConsonants>
             {count === items.length ? <h1>Congratulation</h1> :
@@ -87,8 +105,14 @@ function Consonants({sound}: props) {
                         :
                         <Letter> {items[count].latin}</Letter>
                     }
-                    <StyledInput type="text" onKeyDown={(event) => handleKeyDown(event)} placeholder={'answer here'}
-                           value={input} onChange={(event) => setInput(event.target.value)}/>
+                    <Answer>
+                        <StyledInput type="text" onKeyDown={(event) => handleKeyDown(event)} placeholder={'answer here'}
+                                     value={input} onChange={(event) => setInput(event.target.value)}/>
+                        <ValidateButton onClick={() => {
+                            handleValidate(input)
+                        }}>✓
+                        </ValidateButton>
+                    </Answer>
                 </>
             }
         </StyledConsonants>
