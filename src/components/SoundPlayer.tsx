@@ -1,15 +1,13 @@
-import ReactAudioPlayer from "react-audio-player";
-
 interface props {
     source: string
 }
 
 function SoundPlayer({source}: props) {
-   return <ReactAudioPlayer
-        src={source}
-        autoPlay
-        controls
-    />
+
+    return <audio controls autoPlay={true} key={source}>
+        <source src={source} type="audio/mpeg"/>
+    </audio>
+
 }
 
 export default SoundPlayer
