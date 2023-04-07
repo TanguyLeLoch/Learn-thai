@@ -10,8 +10,8 @@ const Letter = styled.div`
 `
 const Toast = styled.div`
   position: absolute;
-  top: 50px;
-  right: 50px;
+  top: 20px;
+  right: 20px;
   padding: 10px 20px;
   font-weight: bold;
   color: white;
@@ -22,9 +22,20 @@ const Toast = styled.div`
 const StyledConsonants = styled.div`
   border: 2px solid white;
   border-radius: 20px;
-  padding: 70px;
+  padding: 40px;
+  position: relative;
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
+`
+const Title = styled.h1`
+  margin-top: 10px;
+  font-size: min(3rem, 5vw);
 `
 
+const StyledInput = styled.input`
+    width: 80%;
+`
 interface props {
     sound: boolean
 }
@@ -67,7 +78,7 @@ function Consonants({sound}: props) {
         <StyledConsonants>
             {count === items.length ? <h1>Congratulation</h1> :
                 <>
-                    <h1>Type in Thai script</h1>
+                    <Title>Type in Thai script</Title>
                     {
                         result !== null && <Toast $result={result}> {result ? 'Correct' : 'Wrong'}</Toast>
                     }
@@ -76,7 +87,7 @@ function Consonants({sound}: props) {
                         :
                         <Letter> {items[count].latin}</Letter>
                     }
-                    <input type="text" onKeyDown={(event) => handleKeyDown(event)} placeholder={'answer here'}
+                    <StyledInput type="text" onKeyDown={(event) => handleKeyDown(event)} placeholder={'answer here'}
                            value={input} onChange={(event) => setInput(event.target.value)}/>
                 </>
             }

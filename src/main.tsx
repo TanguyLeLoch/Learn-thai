@@ -14,11 +14,11 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "consonants",
+                path: "read",
                 element: <Consonants sound={false} />,
             },
             {
-                path: "sound",
+                path: "listen",
                 element: <Consonants sound={true} />,
             }
         ],

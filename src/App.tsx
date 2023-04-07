@@ -17,16 +17,18 @@ const StyledElem = styled.li`
   font-weight: bold;
   margin: 20px;
   padding: 0;
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `
 
 function App() {
-
     return (
         <div className="App">
             <h1>Choose a lesson</h1>
             <StyledList>
-                <StyledElem><a href="/consonants">Latin to thai consonants</a></StyledElem>
-                <StyledElem><a href="/sound">Sound to thai consonants</a></StyledElem>
+                <StyledElem><a href="/read">Roman to thai consonants</a></StyledElem>
+                <StyledElem><a href="/listen">Sound to thai consonants</a></StyledElem>
             </StyledList>
             <Outlet/>
         </div>
