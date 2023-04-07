@@ -1,5 +1,5 @@
 import React, {useState, KeyboardEvent} from 'react'
-import items, {letter} from "./ConsonantsList";
+import items from "./ConsonantsList";
 import styled from 'styled-components';
 
 const Letter = styled.div`
@@ -71,7 +71,6 @@ function Consonants() {
                            value={input} onChange={(event) => setInput(event.target.value)}/>
                 </>
             }
-
         </StyledConsonants>
     )
 }
